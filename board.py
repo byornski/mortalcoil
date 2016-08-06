@@ -8,6 +8,7 @@ class board:
     empty_square = -2
     
     def __init__(self,level,xSize,ySize,boardstring):
+        '''Given the size, level and boardstring returns a board'''
         self.level = int(level)
         self.xSize = int(xSize)
         self.ySize = int(ySize)
@@ -34,21 +35,27 @@ class board:
         return copy.deepcopy(self)
 
     def isEmpty(self,pos):
+        '''Is the specified position empty?'''
         return self.inBounds(pos) and self.board[pos] == self.empty_square
 
     def inBounds(self,pos):
+        '''Is the positon in bounds?'''
         y,x = pos
         return x in xrange(self.xSize) and y in xrange(self.ySize)
 
     def __setitem__(self,key,value):
+        '''Allows the board to be accessed directly -- board[pos] = 2'''
         self.board[key] = value
 
     def __getitem__(self,key):
+        '''Allows the board to be accessed directly -- print board[pos]'''
         return self.board[key]
 
     def reset(self,level=0):
+        '''Reset anything higher than level to empty'''
         self.board[self.board > level] = self.empty_square
         #self.board = np.minimum(self.board,level)
 
     def finished(self):
+        '''Are there empty squares?'''
         return np.any(self.board == self.empty_square)
