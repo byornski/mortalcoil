@@ -2,5 +2,5 @@ Mortal Coil Solver
 ==================
 
 
-web.py - download and parse levels
-board.py - board class
+* web.py - download and parse levels
+* board.py - board class
